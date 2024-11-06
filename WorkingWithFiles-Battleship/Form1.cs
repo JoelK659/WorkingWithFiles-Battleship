@@ -1,3 +1,6 @@
+using System.IO;
+using System.Text;
+
 namespace WorkingWithFiles_Battleship
 {
     public partial class Battleship : Form
@@ -8,17 +11,25 @@ namespace WorkingWithFiles_Battleship
         public Battleship()
         {
             InitializeComponent();
-            StreamReader stream = new StreamReader("C:\\Users\\joelj\\source\\repos\\WorkingWithFiles-Battleship\\WorkingWithFiles-Battleship\\BattleshipBoard.txt");
+
+        }
+        private void Battleship_Load(object sender, EventArgs e)
+        {
+            FileStream board = File.Create("BattleshipBoard.txt");
+            byte[] myInfo = new UTF8Encoding(true).GetBytes("ooooxxoooo\r\noooooooooo\r\nxooooooxoo\r\nxooooooxoo\r\n" +
+                "xooooooxoo\r\noooooooooo\r\nxxxxoooooo\r\noooooooooo\r\nooooxxxxxo\r\noooooooooo");
+            board.Write(myInfo, 0, myInfo.Length);
+            board.Close();
+            StreamReader stream = new StreamReader("BattleshipBoard.txt");
             for (int i = 0; i < point.GetLength(0); i++)
             {
-                for(int j = 0; j < point.GetLength(1); j++)
+                for (int j = 0; j < point.GetLength(1); j++)
                 {
                     point[i, j] = (char)stream.Read();
                 }
 
             }
-
-            char test = point[0, 2];
+            stream.Close();
         }
 
         private void SendBomb_Click(object sender, EventArgs e)
@@ -38,17 +49,30 @@ namespace WorkingWithFiles_Battleship
             }
             else
             {
-                
+
                 StreamReader sr = new StreamReader("BattleshipBoard.txt");
                 string seaRow;
-                while((seaRow = sr.ReadLine()) != null)
+                if (point[row, col] == 'x')
                 {
-                   
+                    MessageBox.Show("Direct Hit!");
+                    StreamReader stream = new StreamReader("C:\\Users\\joelj\\source\\repos\\WorkingWithFiles-Battleship\\WorkingWithFiles-Battleship\\BattleshipBoard.txt");
+                    FileStream newBoard = File.Create("C:\\Users\\joelj\\source\\repos\\WorkingWithFiles-Battleship\\WorkingWithFiles-Battleship\\BattleshipBoard.txt");
+                    for (int i = 0; i < point.GetLength(0); i++)
+                    {
+                        for (int j = 0; j < point.GetLength(1); j++)
+                        {
+                            point[i, j] = (char)stream.Read();
+                        }
+
+                    }
                 }
 
+
             }
-            
+
 
         }
+
+        
     }
 }
