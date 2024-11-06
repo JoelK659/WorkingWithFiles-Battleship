@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Battleship));
             SendBomb = new Button();
             ColBox = new TextBox();
             RowBox = new TextBox();
@@ -80,13 +81,13 @@
             // 
             // Tutorial
             // 
-            Tutorial.Location = new Point(12, 153);
+            Tutorial.Location = new Point(12, 83);
             Tutorial.Multiline = true;
             Tutorial.Name = "Tutorial";
             Tutorial.ReadOnly = true;
-            Tutorial.Size = new Size(149, 285);
+            Tutorial.Size = new Size(149, 321);
             Tutorial.TabIndex = 5;
-            Tutorial.Text = "Let's Play Battleship! Enter the row and column you think a ship is located on and press the button when you're ready to send it!";
+            Tutorial.Text = resources.GetString("Tutorial.Text");
             // 
             // Battleship
             // 

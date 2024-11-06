@@ -1,5 +1,7 @@
 using System.IO;
+using System.Security.Cryptography.Xml;
 using System.Text;
+using System.Web;
 
 namespace WorkingWithFiles_Battleship
 {
@@ -7,37 +9,43 @@ namespace WorkingWithFiles_Battleship
     {
         public int row;
         public int col;
-        public char[,] point = new char[10, 10];
+        public char[,] point = { { 'o', 'o', 'o', 'o', 'x', 'x', 'o', 'o', 'o', 'o' },
+                                 { 'o', 'o', 'o', 'o', 'o', 'o', 'o', 'o', 'o', 'o' },
+                                 { 'x', 'o', 'o', 'o', 'o', 'o', 'o', 'x', 'o', 'o' },
+                                 { 'x', 'o', 'o', 'o', 'o', 'o', 'o', 'x', 'o', 'o' },
+                                 { 'x', 'o', 'o', 'o', 'o', 'o', 'o', 'x', 'o', 'o' },
+                                 { 'o', 'o', 'o', 'o', 'o', 'o', 'o', 'o', 'o', 'o' },
+                                 { 'x', 'x', 'x', 'x', 'o', 'o', 'o', 'o', 'o', 'o' },
+                                 { 'o', 'o', 'o', 'o', 'o', 'o', 'o', 'o', 'o', 'o' },
+                                 { 'o', 'o', 'o', 'o', 'x', 'x', 'x', 'x', 'x', 'o' },
+                                 { 'o', 'o', 'o', 'o', 'o', 'o', 'o', 'o', 'o', 'o' }};
+        public char test;
+        public string updatedBoard;
+        public int charTracker;
         public Battleship()
         {
             InitializeComponent();
-
-        }
-        private void Battleship_Load(object sender, EventArgs e)
-        {
             FileStream board = File.Create("BattleshipBoard.txt");
             byte[] myInfo = new UTF8Encoding(true).GetBytes("ooooxxoooo\r\noooooooooo\r\nxooooooxoo\r\nxooooooxoo\r\n" +
                 "xooooooxoo\r\noooooooooo\r\nxxxxoooooo\r\noooooooooo\r\nooooxxxxxo\r\noooooooooo");
             board.Write(myInfo, 0, myInfo.Length);
             board.Close();
-            StreamReader stream = new StreamReader("BattleshipBoard.txt");
-            for (int i = 0; i < point.GetLength(0); i++)
-            {
-                for (int j = 0; j < point.GetLength(1); j++)
-                {
-                    point[i, j] = (char)stream.Read();
-                }
+            FileStream yourboard = File.Create("YourBoard.txt");
+            byte[] yourInfo = new UTF8Encoding(true).GetBytes("oooooooooo\r\noooooooooo\r\noooooooooo\r\noooooooooo\r\n" +
+                "oooooooooo\r\noooooooooo\r\noooooooooo\r\noooooooooo\r\noooooooooo\r\noooooooooo");
+            yourboard.Write(yourInfo, 0, yourInfo.Length);
+            yourboard.Close();
 
-            }
-            stream.Close();
+
         }
+
 
         private void SendBomb_Click(object sender, EventArgs e)
         {
             try
             {
                 row = Convert.ToInt32(RowBox.Text);
-                col = Convert.ToInt32(RowBox.Text);
+                col = Convert.ToInt32(ColBox.Text);
             }
             catch (ArgumentException)
             {
@@ -49,22 +57,47 @@ namespace WorkingWithFiles_Battleship
             }
             else
             {
+                test = point[row - 1, col - 1];
 
-                StreamReader sr = new StreamReader("BattleshipBoard.txt");
-                string seaRow;
-                if (point[row, col] == 'x')
+                if (point[row - 1, col - 1] == 'x')
                 {
                     MessageBox.Show("Direct Hit!");
-                    StreamReader stream = new StreamReader("C:\\Users\\joelj\\source\\repos\\WorkingWithFiles-Battleship\\WorkingWithFiles-Battleship\\BattleshipBoard.txt");
-                    FileStream newBoard = File.Create("C:\\Users\\joelj\\source\\repos\\WorkingWithFiles-Battleship\\WorkingWithFiles-Battleship\\BattleshipBoard.txt");
-                    for (int i = 0; i < point.GetLength(0); i++)
+                    point[row - 1, col - 1] = 'H';
+                    FileStream newBoard = File.Create("BattleshipBoard.txt");
+                    foreach(char i in point)
                     {
-                        for (int j = 0; j < point.GetLength(1); j++)
+                        updatedBoard += i;
+                        charTracker++;
+                        if(charTracker == 10)
                         {
-                            point[i, j] = (char)stream.Read();
+                            updatedBoard += "\r\n";
+                            charTracker = 0;
                         }
-
                     }
+                    byte[] writeToNew = new UTF8Encoding(true).GetBytes(updatedBoard);
+                    newBoard.Write(writeToNew, 0, writeToNew.Length);
+                    newBoard.Close();
+
+                }
+                else
+                {
+                    MessageBox.Show("Miss!");
+                    point[row - 1, col - 1] = 'M';
+                    FileStream newBoard = File.Create("BattleshipBoard.txt");
+                    foreach (char i in point)
+                    {
+                        updatedBoard += i;
+                        charTracker++;
+                        if (charTracker == 10)
+                        {
+                            updatedBoard += "\r\n";
+                            charTracker = 0;
+                        }
+                    }
+                    byte[] writeToNew = new UTF8Encoding(true).GetBytes(updatedBoard);
+                    newBoard.Write(writeToNew, 0, writeToNew.Length);
+                    newBoard.Close()
+
                 }
 
 
@@ -73,6 +106,6 @@ namespace WorkingWithFiles_Battleship
 
         }
 
-        
+
     }
 }
