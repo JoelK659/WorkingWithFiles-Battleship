@@ -118,6 +118,6 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Tutorial.Text" xml:space="preserve">
-    <value>Let's Play Battleship! Enter a number 1-10 in the row and column boxes and press the button when you're ready! The text file in the bin called "YourBoard" will be constantly updated throughout the game so you can keep track of where you've guessed. Good luck!</value>
+    <value>Let's Play Battleship! Enter a number 1-10 in the row and column boxes and press the button when you're ready! The text file in the bin called "YourBoard" will be constantly updated throughout the game so you can keep track of where you've guessed. You have a total of 30 tries to find the  5 ships. There is 1 ship that is two spots wide, 2 that are 3 spots wide, 1 that is 4 spots wide, and 1 that is 5 spots wide. Good luck!</value>
   </data>
 </root>

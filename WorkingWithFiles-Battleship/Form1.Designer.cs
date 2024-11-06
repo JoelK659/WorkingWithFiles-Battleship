@@ -35,6 +35,11 @@
             RowLabel = new Label();
             ColumnLabel = new Label();
             Tutorial = new TextBox();
+            label1 = new Label();
+            NumofTries = new TextBox();
+            RestartButton = new Button();
+            label2 = new Label();
+            NumofShipsHit = new TextBox();
             SuspendLayout();
             // 
             // SendBomb
@@ -85,9 +90,53 @@
             Tutorial.Multiline = true;
             Tutorial.Name = "Tutorial";
             Tutorial.ReadOnly = true;
-            Tutorial.Size = new Size(149, 321);
+            Tutorial.Size = new Size(200, 331);
             Tutorial.TabIndex = 5;
             Tutorial.Text = resources.GetString("Tutorial.Text");
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new Point(463, 385);
+            label1.Name = "label1";
+            label1.Size = new Size(42, 20);
+            label1.TabIndex = 6;
+            label1.Text = "Tries:";
+            // 
+            // NumofTries
+            // 
+            NumofTries.Location = new Point(527, 382);
+            NumofTries.Name = "NumofTries";
+            NumofTries.ReadOnly = true;
+            NumofTries.Size = new Size(39, 27);
+            NumofTries.TabIndex = 7;
+            // 
+            // RestartButton
+            // 
+            RestartButton.Location = new Point(638, 213);
+            RestartButton.Name = "RestartButton";
+            RestartButton.Size = new Size(94, 29);
+            RestartButton.TabIndex = 8;
+            RestartButton.Text = "Restart";
+            RestartButton.UseVisualStyleBackColor = true;
+            RestartButton.Visible = false;
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Location = new Point(434, 341);
+            label2.Name = "label2";
+            label2.Size = new Size(71, 20);
+            label2.TabIndex = 9;
+            label2.Text = "Ships Hit:";
+            // 
+            // NumofShipsHit
+            // 
+            NumofShipsHit.Location = new Point(527, 338);
+            NumofShipsHit.Name = "NumofShipsHit";
+            NumofShipsHit.ReadOnly = true;
+            NumofShipsHit.Size = new Size(39, 27);
+            NumofShipsHit.TabIndex = 10;
             // 
             // Battleship
             // 
@@ -96,6 +145,11 @@
             BackgroundImage = Properties.Resources.images;
             BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(800, 450);
+            Controls.Add(NumofShipsHit);
+            Controls.Add(label2);
+            Controls.Add(RestartButton);
+            Controls.Add(NumofTries);
+            Controls.Add(label1);
             Controls.Add(Tutorial);
             Controls.Add(ColumnLabel);
             Controls.Add(RowLabel);
@@ -116,5 +170,10 @@
         private Label RowLabel;
         private Label ColumnLabel;
         private TextBox Tutorial;
+        private Label label1;
+        private TextBox NumofTries;
+        private Button RestartButton;
+        private Label label2;
+        private TextBox NumofShipsHit;
     }
 }
