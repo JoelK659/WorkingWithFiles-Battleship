@@ -37,7 +37,6 @@
             Tutorial = new TextBox();
             label1 = new Label();
             NumofTries = new TextBox();
-            RestartButton = new Button();
             label2 = new Label();
             NumofShipsHit = new TextBox();
             SuspendLayout();
@@ -111,16 +110,6 @@
             NumofTries.Size = new Size(39, 27);
             NumofTries.TabIndex = 7;
             // 
-            // RestartButton
-            // 
-            RestartButton.Location = new Point(638, 213);
-            RestartButton.Name = "RestartButton";
-            RestartButton.Size = new Size(94, 29);
-            RestartButton.TabIndex = 8;
-            RestartButton.Text = "Restart";
-            RestartButton.UseVisualStyleBackColor = true;
-            RestartButton.Visible = false;
-            // 
             // label2
             // 
             label2.AutoSize = true;
@@ -147,7 +136,6 @@
             ClientSize = new Size(800, 450);
             Controls.Add(NumofShipsHit);
             Controls.Add(label2);
-            Controls.Add(RestartButton);
             Controls.Add(NumofTries);
             Controls.Add(label1);
             Controls.Add(Tutorial);
@@ -172,7 +160,6 @@
         private TextBox Tutorial;
         private Label label1;
         private TextBox NumofTries;
-        private Button RestartButton;
         private Label label2;
         private TextBox NumofShipsHit;
     }
