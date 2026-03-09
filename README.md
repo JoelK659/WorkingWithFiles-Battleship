@@ -26,7 +26,7 @@ When the game starts, it reads existing data from files if available. During gam
 2. Open the project in Visual Studio or another C# IDE.
 3. Build the solution.
 4. Run the console application.
-5. Open YourBoard.txt in the file path: ##WorkingWithFiles-Battleship\bin\Debug\net8.0-windows##
+5. Open YourBoard.txt in the file path: `WorkingWithFiles-Battleship\bin\Debug\net8.0-windows`
 
 ## Future Improvements
 - Computer AI opponent
